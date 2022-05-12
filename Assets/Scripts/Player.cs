@@ -6,11 +6,13 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float _speed = 8f;
     [SerializeField] private float _jumpForce = 15f;
+    [SerializeField] private float _startTimeAttack = 0.1f;
 
     private Rigidbody2D _rig;
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
     private bool _isGrounded = true;
+    private float _timeAttack;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +43,17 @@ public class Player : MonoBehaviour
             _isGrounded = false;
             _animator.SetTrigger("isJumping");
             _animator.SetBool("isWalking", false);
+        }
+
+        if (_startTimeAttack <= 0) {
+            if (Input.GetKey(KeyCode.Z)) {
+                _animator.SetTrigger("isAttacking");
+                _timeAttack = _startTimeAttack;
+            }
+            
+        } else {
+            _timeAttack -= Time.deltaTime;
+            _animator.SetTrigger("isAttacking");
         }
     }
 
