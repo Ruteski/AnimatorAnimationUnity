@@ -7,6 +7,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float _speed = 8f;
     [SerializeField] private float _jumpForce = 15f;
     [SerializeField] private float _startTimeAttack = 0.1f;
+    [SerializeField] private Transform _target;
+    [SerializeField] private GameObject _energy;
+    [SerializeField] private Transform _backPoint;
 
     private Rigidbody2D _rig;
     private Animator _animator;
@@ -20,6 +23,18 @@ public class Player : MonoBehaviour
         _rig = GetComponent<Rigidbody2D>(); 
         _animator = GetComponent<Animator>();   
         _spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.Z)) {
+            GameObject bullet = Instantiate(_energy);
+
+            if (_spriteRenderer.flipX){
+                bullet.transform.position = _backPoint.transform.position; 
+            } else {
+                bullet.transform.position = _target.transform.position;
+            }
+        }
     }
 
     private void FixedUpdate() {
