@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
             } else {
                 bullet.transform.position = _target.transform.position;
             }
+            AudioController.current.PlayMusic(AudioController.current.sfx);
         }
     }
 
@@ -83,6 +84,7 @@ public class Player : MonoBehaviour
             collision.gameObject.GetComponent<Animator>().SetTrigger("hit");
             Destroy(collision.gameObject, 2f);
             _rig.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
+            AudioController.current.PlayMusic(AudioController.current.anotherSfx);
         }
     }
 }
