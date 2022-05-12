@@ -78,5 +78,10 @@ public class Player : MonoBehaviour
         if (collision.gameObject.layer == 6) {
             _isGrounded = true;
         }
+
+        if (collision.gameObject.CompareTag("Enemy")) {
+            collision.gameObject.GetComponent<Animator>().SetTrigger("hit");
+            Destroy(collision.gameObject, 2f);
+        }
     }
 }
