@@ -82,6 +82,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy")) {
             collision.gameObject.GetComponent<Animator>().SetTrigger("hit");
             Destroy(collision.gameObject, 2f);
+            _rig.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
         }
     }
 }
