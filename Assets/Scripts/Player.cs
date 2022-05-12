@@ -47,13 +47,15 @@ public class Player : MonoBehaviour
 
         if (_startTimeAttack <= 0) {
             if (Input.GetKey(KeyCode.Z)) {
-                _animator.SetTrigger("isAttacking");
+                //_animator.SetTrigger("isAttacking");
+                _animator.SetBool("isAtk", true);
                 _timeAttack = _startTimeAttack;
             }
             
         } else {
             _timeAttack -= Time.deltaTime;
-            _animator.SetTrigger("isAttacking");
+            //_animator.SetTrigger("isAttacking");
+            _animator.SetBool("isAtk", false);
         }
     }
 
